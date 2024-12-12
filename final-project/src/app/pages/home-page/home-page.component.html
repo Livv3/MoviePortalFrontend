@@ -1,0 +1,32 @@
+<div class="home-container">
+  <div class="video-container">
+    <youtube-player 
+      [videoId]=allMovies[0].trailerUrl
+      suggestedQuality="highres" 
+      [height]="500"
+      [width]="1000"
+      [playerVars]="{controls: 0, mute: 1, autoplay: 1}">
+    </youtube-player>
+  </div>
+  
+  <div class="movies-container">
+    <h2 class="text">TRENDING NOW</h2>
+    <div class="movies-thumbnail">
+      <div class="movie" *ngFor="let movie of allMovies">
+        <div class="cover" (click)="gotoMovie(movie.id)">
+          <img [src]="'https://image.tmdb.org/t/p/w185' + movie.url" alt="">
+        </div>
+      </div>
+    </div>
+
+    <h2 class="text" *ngIf="watchlist && watchlist.length" >FROM YOUR WATCHLIST</h2>
+    <div class="movies-thumbnail" *ngIf="watchlist && watchlist.length" >
+      <div class="movie" *ngFor="let movie of watchlist">
+        <div class="cover" (click)="gotoMovie(movie.id)">
+          <img [src]="'https://image.tmdb.org/t/p/w185' + movie.url" alt="">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

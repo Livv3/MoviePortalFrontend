@@ -1,0 +1,21 @@
+.home-container{
+    display: flex;
+    min-height: 100vh;
+    padding: 20px;
+
+    .movies-thumbnail{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .movie{
+            padding: 20px;
+            cursor: pointer;
+
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+    }
+
+}

@@ -1,0 +1,76 @@
+.home-container{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    min-height: 100vh;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    color: white;
+
+    .video-container {
+        padding: 10px;
+        text-align: center;
+      }
+      
+      .movies-container {
+        display: block;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: left;
+
+
+        .text{
+            margin-top: 2rem;
+            margin-right: 60%;
+            color: rgb(192, 157, 218);
+            background-color: rgb(47, 47, 47);
+        }
+
+        .movies-thumbnail{
+            display: flex;
+            overflow-x: auto;
+            overflow-y: hidden;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+    
+            .movie{
+                padding: 20px;
+                cursor: pointer;
+    
+                &:hover{
+                    transform: scale(1.1);
+                    box-shadow: inset;
+                }
+            }
+        }
+      }
+
+
+::-webkit-scrollbar {
+    height: 12px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    box-shadow: inset 0 0 4px #707070;
+    
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(rgb(192, 157, 218), rgb(97, 6, 167));
+    border-radius: 10px;
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background:  linear-gradient(rgb(216, 157, 218), rgb(167, 6, 162));
+    
+}
+   
+
+}

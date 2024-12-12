@@ -1,0 +1,44 @@
+<div class="signup-back">
+  <div class="signup-box">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <p class="signup-mainText">Sign Up</p>
+        <div>
+          <p class="signup-text">Username</p>
+          <input class="signup-input" placeholder="username..." formControlName="username" required />
+          <div *ngIf="signupForm.get('username')?.hasError('required') && signupFormSubmitted" class="validation-message">
+            Username is required.
+          </div>
+
+          <p class="signup-text">Password</p>
+          <input class="form-control" type="password" placeholder="password..." formControlName="password" required />
+          <div *ngIf="signupForm.get('password')?.hasError('required') && signupFormSubmitted" class="validation-message">
+            Password is required.
+          </div>
+          <div *ngIf="signupForm.get('password')?.hasError('minlength')" class="validation-message">
+            Password must be at least 8 characters long.
+          </div>
+          <div *ngIf="signupForm.get('password')?.hasError('pattern')" class="validation-message">
+            Password must contain at least one lowercase letter, one uppercase letter, and one digit.
+          </div>
+
+          <p class="signup-text">Password again</p>
+          <input class="form-control" type="password" placeholder="password again..." formControlName="confirmPassword" required />
+          <div *ngIf="signupForm.get('confirmPassword')?.hasError('required') && signupFormSubmitted" class="validation-message">
+            Password confirmation is required.
+          </div>
+
+          <p class="signup-text">Email</p>
+          <input class="form-control" type="email" placeholder="email address..." formControlName="email" required />
+          <div *ngIf="signupForm.get('email')?.hasError('required') && signupFormSubmitted" class="validation-message">
+            Email is required.
+          </div>
+          <div *ngIf="signupForm.get('email')?.hasError('email') && signupFormSubmitted" class="validation-message">
+            Please enter a valid email address.
+          </div>
+        </div>
+        <button type="submit" class="signup-button">Sign Up</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+.bg{
+    background-image: url('/assets/film-strip.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    .space {
+        height: 5rem;
+    }
+}
+
+@media screen and (max-width: 1050px){
+    .bg{
+        background-image: url('/assets/film-strip.jpg');
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        .space {
+            height: 15rem;
+        }
+    }
+}

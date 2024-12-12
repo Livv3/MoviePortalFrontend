@@ -1,0 +1,9 @@
+<div class="home-container">
+  <div class="movies-thumbnail">
+    <div class="movie" *ngFor="let movie of allMovies">
+      <div class="cover" (click)="gotoMovie(movie.id)">
+        <img [src]="'https://image.tmdb.org/t/p/w185' + movie.url" alt="">
+      </div>
+    </div>
+  </div>
+</div>

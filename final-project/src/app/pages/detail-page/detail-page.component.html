@@ -1,0 +1,70 @@
+<div class="movie-container">
+    <div class="background-image"></div>
+    <div class="top">
+        <div class="left">
+            <p class="title">{{movie.title}}</p>
+            <img [src]="'https://image.tmdb.org/t/p/w342' + movie.url" alt="">
+            <p class="tagline">{{movie.tagline}}</p>
+            <div class="rating">
+                <app-star-rating [rating]="movie.userRating" [maxRating]="10"></app-star-rating>
+            </div>
+            <div class="userlists" *ngIf="user && !admin">
+                <button class="user-button" [ngClass]="{'user-button2': seen}" (click)="addToSeen()">Seen it <mat-icon>check_circle_outline</mat-icon></button>
+                <button class="user-button" [ngClass]="{'user-button2': favourited}" (click)="addToFav()">Favourite <mat-icon>favorite_border</mat-icon></button>
+                <button class="user-button" [ngClass]="{'user-button2': watchlisted}" (click)="addToWatchlist()">Add to watchlist <mat-icon>playlist_add</mat-icon></button>
+            </div>
+        </div>
+        <div class="right">
+            <p class="genre"> 
+                <b class="gen">genres: </b>   |
+                <span *ngFor="let genre of genres">{{genre.name}} | </span>
+            </p>
+            <p class="streamsite" *ngIf="admin || streamsitesExist()"> 
+                <b class="site">streaming sites: </b>   |
+                <span *ngFor="let site of streamsites">{{site.name}} | </span>
+            </p>
+            <form class="streamsite-form" #form="ngForm" (ngSubmit)="onSubmitStreamsite(form)" *ngIf="admin">
+                <input class="streamsite-form-input" name="name" ngModel placeholder="Add a new streamingsite..."/>
+                <button class="streamsite-form-button">Post</button>
+            </form>
+            <p> <b class="runtime">runtime: </b>{{movie.runtime}} minutes</p>
+            <p> <b class="runtime">release year: </b>{{movie.year}}</p>
+            <div class="col-lg-10 col-md-6 col-sm-4">
+                  <p class="description">{{movie.description}}</p>
+            </div>
+            <b class="trailer">TRAILER</b>
+                
+            <div class="video-container">
+                <youtube-player
+                  [videoId]=movie.trailerUrl
+                  suggestedQuality="highres"
+                  [height]="400"
+                  [width]="800"
+                  [playerVars]="{controls: 1, mute: 1, autoplay: 1}">
+                </youtube-player>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <h2 class="comment-sign">Comments</h2>
+        <span *ngIf="!hasUserAndToken()">
+            <h4>Sign in to leave a comment!</h4>
+        </span>
+        <span >
+            <div class="comment-box" *ngIf="hasUserAndToken() && !admin">
+                <form class="search-form" #form="ngForm" (ngSubmit)="onSubmitComment(form)" >
+                    <input class="comment-input" name="text" ngModel placeholder="Write a comment..."/>
+                    <button class="post-button">Post</button>
+                </form>
+            </div>
+        </span>
+        <div class="comments">
+            <span *ngFor="let comment of comments">
+                <div class="comment-box">
+                    <h6>{{ comment.username }}</h6>
+                    <h5>{{ comment.text }}</h5>
+                </div>
+            </span>
+        </div>
+    </div>
+  </div>

@@ -1,0 +1,27 @@
+<h1 class="main-text">YOUR LISTS:</h1>
+<div class="movies-container">
+    <h2 class="text" *ngIf="watchlist && watchlist.length > 0">From your watchlist: </h2>
+    <div class="movies-thumbnail">
+      <div class="movie" *ngFor="let movie of watchlist">
+        <div class="cover" (click)="gotoMovie(movie.id)">
+          <img [src]="'https://image.tmdb.org/t/p/w154' + movie.url" alt="">
+        </div>
+      </div>
+    </div>
+    <h2 class="text" *ngIf="favourites && favourites.length > 0">Your favourites: </h2>
+    <div class="movies-thumbnail">
+      <div class="movie" *ngFor="let movie of favourites">
+        <div class="cover" (click)="gotoMovie(movie.id)">
+          <img [src]="'https://image.tmdb.org/t/p/w154' + movie.url" alt="">
+        </div>
+      </div>
+    </div>
+    <h2 class="text" *ngIf="seenlist && seenlist.length > 0">Watch these again: </h2>
+    <div class="movies-thumbnail">
+      <div class="movie" *ngFor="let movie of seenlist">
+        <div class="cover" (click)="gotoMovie(movie.id)">
+          <img [src]="'https://image.tmdb.org/t/p/w154' + movie.url" alt="">
+        </div>
+      </div>
+    </div>
+</div>

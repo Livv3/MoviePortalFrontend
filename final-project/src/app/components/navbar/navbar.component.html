@@ -1,0 +1,37 @@
+<div class="search-container">
+  <span class="page-title" routerLink="/">CinemaniaX</span>  
+ 
+    <form class="search-form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <input class="search-input" name="search" ngModel placeholder="Search..."/>
+      <button class="search-button">Search</button>     
+    </form>
+
+    <button class="genremenu-button" [mat-menu-trigger-for]="genremenu">genre<mat-icon>keyboard_arrow_down</mat-icon></button>
+    <mat-menu #genremenu="matMenu" class="openable-menu">
+      <mat-drawer-container>
+        <button
+          *ngFor="let genre of genres"
+          mat-menu-item
+          class="menuitem"
+          (click)="genreSearch(genre)"
+        >
+        {{ genre }}
+        </button>
+      </mat-drawer-container>
+    </mat-menu>
+
+    <button  mat-icon-button class="menu-button" [mat-menu-trigger-for]="menu"><mat-icon>menu</mat-icon></button>
+    <mat-menu #menu="matMenu" class="openable-menu">
+      <mat-drawer-container *ngIf="!hasUserAndToken()">
+        <button mat-menu-item class="menuitem" routerLink="login">Login</button>
+        <button mat-menu-item class="menuitem" routerLink="signup">Sign Up</button>
+        <button mat-menu-item routerLink="/">Home</button>
+      </mat-drawer-container>
+
+      <mat-drawer-container *ngIf="hasUserAndToken()">
+        <button mat-menu-item class="menuitem" routerLink="user"  *ngIf="hasUserAndToken() && !admin"> {{this.username}} 's Page</button>
+        <button mat-menu-item class="menuitem" routerLink="/">Home</button>
+        <button mat-menu-item (click)="logout()">Log out</button>
+      </mat-drawer-container>
+    </mat-menu>
+</div> 
